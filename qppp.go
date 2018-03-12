@@ -204,7 +204,6 @@ func parseHeader(bufReader *bufio.Reader, conn net.Conn) (*net.TCPAddr, *net.TCP
 			}
 			break
 		} else {
-			println("Not proxy protocol!!")
 			return nil, nil, nil
 		}
 	}
