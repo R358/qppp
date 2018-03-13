@@ -185,9 +185,6 @@ func parseHeader(bufReader *bufio.Reader, conn net.Conn) (*net.TCPAddr, *net.TCP
 
 		if bytes.Equal(inp, prefix[:i]) {
 			srcAddr, dstAddr, err = parseV1(bufReader, conn)
-			if err != nil {
-				conn.Close()
-			}
 
 			if (srcAddr == nil || dstAddr == nil) && err != nil {
 				conn.Close()
@@ -195,9 +192,6 @@ func parseHeader(bufReader *bufio.Reader, conn net.Conn) (*net.TCPAddr, *net.TCP
 			break
 		} else if bytes.Equal(inp, v2Magic1[:i]) {
 			srcAddr, dstAddr, err = parseV2(bufReader, conn)
-			if err != nil {
-				conn.Close()
-			}
 
 			if (srcAddr == nil || dstAddr == nil) && err != nil {
 				conn.Close()
